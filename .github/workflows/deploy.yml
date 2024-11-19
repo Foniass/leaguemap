@@ -1,0 +1,22 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to VPS
+        env:
+          PRIVATE_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key.pem
+          chmod 600 private_key.pem
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ubuntu@51.75.123.103 "cd /home/ubuntu/leaguemap && git reset --hard && git pull origin main && /home/ubuntu/.bun/bin/bun install && /home/ubuntu/.bun/bin/bun run build && pm2 restart leaguemap "
+          rm -f private_key.pem
