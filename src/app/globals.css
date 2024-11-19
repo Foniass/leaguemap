@@ -1,0 +1,86 @@
+@import "@/src/css/fonts.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.absolute-center {
+	@apply absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2;
+}
+
+.hover-zoom-105 {
+	@apply transition-transform duration-200 ease-in-out transform hover:scale-105 hover:cursor-pointer;
+}
+
+.hover-zoom-110 {
+	@apply transition-transform duration-200 ease-in-out transform hover:scale-110 hover:cursor-pointer;
+}
+
+.stopped {
+	animation: none;
+}
+
+.box-shadow {
+	box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 5px;
+}
+
+/* Add break line to react-tooltip */
+.react-tooltip {
+	max-width: 185px;
+	word-wrap: break-word;
+}
+
+/* Chrome, Edge, and Safari */
+.custom-scrollbar::-webkit-scrollbar {
+	width: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background-color: #888;
+	border-radius: 20px;
+	border: 2px solid #252728;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+	display: none;
+}
+
+/* Firefox */
+.custom-scrollbar {
+	scrollbar-width: thin;
+	scrollbar-color: #888 transparent;
+}
+
+input[type="range"] {
+	appearance: none;
+	width: 130px;
+	height: 20px;
+	background: linear-gradient(to right, #00ffff 0%, #00baba 100%);
+	background-size: 150px 10px;
+	background-position: center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	background: #00baba;
+	position: relative;
+	z-index: 3;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideInFromLeft {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.popup-slide-in-from-left {
+	position: fixed; /* Use fixed to position relative to the viewport */
+	animation: slideInFromLeft 0.3s forwards; /* The animation will stay at the 100% keyframe when completed, thanks to 'forwards' */
+}
